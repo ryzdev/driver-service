@@ -3,6 +3,8 @@
 
 This webservice uses Spring Boot and an H2 in-memory database, and includes tests and Swagger UI interactive documentation with examples.  
 
+run tests with `./mvnw test`
+
 run with `./mvnw spring-boot:run`
 
 Interact with the API easily [using Swagger UI here.](http://localhost:8080/swagger-ui/#/)   
