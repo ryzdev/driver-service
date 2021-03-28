@@ -7,7 +7,7 @@ run tests with `./mvnw test`
 
 run with `./mvnw spring-boot:run`
 
-Interact with the API easily [using Swagger UI here.](http://localhost:8080/swagger-ui/#/)   
+With the service running locally, interact with the API easily using Swagger UI [http://localhost:8080/swagger-ui/](http://localhost:8080/swagger-ui/)   
 
 ---
 
