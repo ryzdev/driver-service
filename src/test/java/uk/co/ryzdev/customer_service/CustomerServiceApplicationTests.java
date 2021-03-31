@@ -1,10 +1,10 @@
-package uk.co.ryzdev.driverservice;
+package uk.co.ryzdev.customer_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DriverserviceApplicationTests {
+class CustomerServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

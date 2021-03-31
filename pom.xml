@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>uk.co.ryzdev</groupId>
-	<artifactId>driverservice</artifactId>
+	<artifactId>customer-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>driverservice</name>
-	<description>Driver details service</description>
+	<name>customer-service</name>
+	<description>Demo Customer Service API</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

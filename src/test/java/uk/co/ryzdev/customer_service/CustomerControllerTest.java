@@ -1,4 +1,4 @@
-package uk.co.ryzdev.driverservice;
+package uk.co.ryzdev.customer_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
-public class DriverControllerTest {
+public class CustomerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private DriverRepository driverRepository;
+    private CustomerRepository customerRepository;
 
     private final String firstName1 = "Tony";
     private final String lastName1 = "Stark";
@@ -38,9 +38,9 @@ public class DriverControllerTest {
 
     @Test
     public void createDriver() throws Exception {
-        when(driverRepository.save(any())).thenReturn(new Driver(firstName1, lastName1, LocalDate.parse(dateOfBirth1)));
+        when(customerRepository.save(any())).thenReturn(new Customer(firstName1, lastName1, LocalDate.parse(dateOfBirth1)));
 
-        this.mockMvc.perform(post("/driver/create")
+        this.mockMvc.perform(post("/customer/create")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(String.format("{\n" +
                         "  \"dateOfBirth\": \"%s\",\n" +
@@ -56,11 +56,11 @@ public class DriverControllerTest {
 
     @Test
     public void getAll() throws Exception {
-        when(driverRepository.findAll()).thenReturn(Arrays.asList(
-                new Driver(firstName1, lastName1, LocalDate.parse(dateOfBirth1)),
-                new Driver(firstName2, lastName2, LocalDate.parse(dateOfBirth2))));
+        when(customerRepository.findAll()).thenReturn(Arrays.asList(
+                new Customer(firstName1, lastName1, LocalDate.parse(dateOfBirth1)),
+                new Customer(firstName2, lastName2, LocalDate.parse(dateOfBirth2))));
 
-        this.mockMvc.perform(get("/drivers")).andDo(print())
+        this.mockMvc.perform(get("/customers")).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(2))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].firstName").value(firstName1))
@@ -74,10 +74,10 @@ public class DriverControllerTest {
 
     @Test
     public void getByDate() throws Exception {
-        when(driverRepository.findByCreationDateAfter(any())).thenReturn(Collections.singletonList(
-                new Driver(firstName2, lastName2, LocalDate.parse(dateOfBirth2))));
+        when(customerRepository.findByCreationDateAfter(any())).thenReturn(Collections.singletonList(
+                new Customer(firstName2, lastName2, LocalDate.parse(dateOfBirth2))));
 
-        this.mockMvc.perform(get(String.format("/drivers/byDate?date=%s", dateOfBirth2))).andDo(print())
+        this.mockMvc.perform(get(String.format("/customers/byDate?date=%s", dateOfBirth2))).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].firstName").value(firstName2))

@@ -1,4 +1,4 @@
-package uk.co.ryzdev.driverservice;
+package uk.co.ryzdev.customer_service;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class SpringFoxConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.ant("/driver*/**"))
+                .paths(PathSelectors.ant("/customer*/**"))
                 .build()
                 .useDefaultResponseMessages(false)
                 .apiInfo(getApiInfo());
@@ -29,7 +29,7 @@ public class SpringFoxConfig {
 
     private ApiInfo getApiInfo() {
         return new ApiInfoBuilder()
-                .title("Driver Service API")
-                .description("Interactive API reference for creating and retrieving driver records").build();
+                .title("Customer Service API")
+                .description("Interactive API reference for creating and retrieving customer records").build();
     }
 }

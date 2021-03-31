@@ -1,4 +1,4 @@
-package uk.co.ryzdev.driverservice;
+package uk.co.ryzdev.customer_service;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-public class Driver {
+public class Customer {
 
     @ApiModelProperty(hidden = true)
     private @Id @GeneratedValue long id;
@@ -28,10 +28,10 @@ public class Driver {
     @ApiModelProperty(example = "1939-05-01")
     private @JsonFormat(pattern="yyyy-MM-dd") LocalDate dateOfBirth;
 
-    public Driver() {
+    public Customer() {
     }
 
-    public Driver(String firstName, String lastName, LocalDate dateOfBirth) {
+    public Customer(String firstName, String lastName, LocalDate dateOfBirth) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;

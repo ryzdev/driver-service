@@ -1,4 +1,4 @@
-package uk.co.ryzdev.driverservice;
+package uk.co.ryzdev.customer_service;
 
 import io.swagger.annotations.ApiParam;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -9,25 +9,25 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 
 @RestController
-public class DriverController {
+public class CustomerController {
 
-    public DriverRepository repository;
+    public CustomerRepository repository;
 
-    public DriverController(DriverRepository repository) {
+    public CustomerController(CustomerRepository repository) {
         this.repository = repository;
     }
 
-    @PostMapping("/driver/create")
-    public ResponseEntity<?> create(@RequestBody Driver driver) {
-        return new ResponseEntity<>(repository.save(driver), HttpStatus.CREATED);
+    @PostMapping("/customer/create")
+    public ResponseEntity<?> create(@RequestBody Customer customer) {
+        return new ResponseEntity<>(repository.save(customer), HttpStatus.CREATED);
     }
 
-    @GetMapping("/drivers")
+    @GetMapping("/customers")
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(repository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/drivers/byDate")
+    @GetMapping("/customers/byDate")
     public ResponseEntity<?>  getByDate(@RequestParam("date")
                                   @ApiParam(example = "2021-03-15")
                                   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {

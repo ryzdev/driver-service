@@ -1,4 +1,4 @@
-package uk.co.ryzdev.driverservice;
+package uk.co.ryzdev.customer_service;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,7 @@ import java.util.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Import(LoadTestDatabase.class)
-class DriverControllerIntegrationTest {
+class CustomerControllerIntegrationTest {
 
     @LocalServerPort
     private int port;
@@ -31,25 +30,25 @@ class DriverControllerIntegrationTest {
 
     @Test
     public void shouldGetAll() {
-        String url = "http://localhost:" + port + "/drivers";
-        ResponseEntity<Driver[]> driversResponse = this.restTemplate.getForEntity(url, Driver[].class);
-        List<Driver> drivers = Arrays.asList(Objects.requireNonNull(driversResponse.getBody()));
+        String url = "http://localhost:" + port + "/customers";
+        ResponseEntity<Customer[]> driversResponse = this.restTemplate.getForEntity(url, Customer[].class);
+        List<Customer> customers = Arrays.asList(Objects.requireNonNull(driversResponse.getBody()));
 
-        assertThat(drivers.size()).isEqualTo(2);
+        assertThat(customers.size()).isEqualTo(2);
 
-        assertThat(drivers.get(0).getFirstName()).isEqualTo("Luke");
-        assertThat(drivers.get(0).getLastName()).isEqualTo("Skywalker");
-        assertThat(drivers.get(0).getDateOfBirth()).isEqualTo(LocalDate.of(1900, 12, 24));
+        assertThat(customers.get(0).getFirstName()).isEqualTo("Luke");
+        assertThat(customers.get(0).getLastName()).isEqualTo("Skywalker");
+        assertThat(customers.get(0).getDateOfBirth()).isEqualTo(LocalDate.of(1958, 12, 24));
 
-        assertThat(drivers.get(1).getFirstName()).isEqualTo("Leia");
-        assertThat(drivers.get(1).getLastName()).isEqualTo("Organa");
-        assertThat(drivers.get(1).getDateOfBirth()).isEqualTo(LocalDate.of(1900, 12, 25));
+        assertThat(customers.get(1).getFirstName()).isEqualTo("Leia");
+        assertThat(customers.get(1).getLastName()).isEqualTo("Organa");
+        assertThat(customers.get(1).getDateOfBirth()).isEqualTo(LocalDate.of(1958, 12, 25));
     }
 
     @Disabled // TODO fix this test
     @Test
     public void shouldPostNewDriver() throws Exception {
-        String url = "http://localhost:" + port + "/driver/create";
+        String url = "http://localhost:" + port + "/customer/create";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -66,10 +65,10 @@ class DriverControllerIntegrationTest {
 //                        "  \"firstName\": \"Bruce\",\n" +
 //                        "  \"lastName\": \"Wayne\"\n" +
 //                        "}");
-        ResponseEntity<Driver> driversResponse = this.restTemplate.postForEntity(url, request, Driver.class);
-        Driver driver = Objects.requireNonNull(driversResponse.getBody());
+        ResponseEntity<Customer> driversResponse = this.restTemplate.postForEntity(url, request, Customer.class);
+        Customer customer = Objects.requireNonNull(driversResponse.getBody());
         assertThat(driversResponse.getBody().getLastName()).isEqualTo("");
 
-        assertThat(driver.getLastName()).isEqualTo("Wayne");
+        assertThat(customer.getLastName()).isEqualTo("Wayne");
     }
 }
