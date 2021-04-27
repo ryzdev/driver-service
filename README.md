@@ -1,4 +1,4 @@
-# Spring Boot demo
+# Spring Boot Swagger demo
 
 This demo webservice uses Spring Boot, H2 and Swagger UI  
 
